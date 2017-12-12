@@ -18,9 +18,9 @@ def run(offset=None, value=None):
 
     try:
         proc = subprocess.Popen([CHALL_OUT_FILE], stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr)
-    except:
+    except Exception as e:
         os.remove(CHALL_OUT_FILE)
-        print("Error when try to execute")
+        print("Error when try to execute : %s" % e)
     else:
         os.remove(CHALL_OUT_FILE)
         proc.wait()
