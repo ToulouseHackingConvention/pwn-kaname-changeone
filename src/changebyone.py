@@ -6,7 +6,7 @@ import subprocess
 import os
 import sys
 
-CHALL_ORIGIN_FILE = "/srv/changebyone"
+CHALL_ORIGIN_FILE = "./changebyone"
 CHALL_OUT_FILE    = "/tmp/" + str(uuid.uuid4())
 
 def run(offset=None, value=None):
@@ -15,6 +15,8 @@ def run(offset=None, value=None):
         with open(CHALL_OUT_FILE, 'r+b') as f:
             f.seek(offset)
             f.write(bytes([value % 256]))
+
+    sys.stdout.flush()
 
     try:
         proc = subprocess.Popen([CHALL_OUT_FILE], stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr)
@@ -28,7 +30,7 @@ def run(offset=None, value=None):
 def get_int(comment="", default=0):
     answer = input(comment)
     try:
-        answer_int = int(answer)
+        answer_int = int(answer,0)
     except ValueError:
         return default
     else:
