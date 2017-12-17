@@ -22,9 +22,9 @@ int main() {
             printf("Strong software\n"
                    "  uname -a  :  get current OS\n"
                    "  help  :  show this message\n"
-                   "  exit  :  go out (recommanded)\n");
+                   "  exit  :  go out (recommended)\n");
         } else {
-            printf("Unknow command %s", buff);
+            printf("Unknown command %s", buff);
         }
     }
     free(buff);

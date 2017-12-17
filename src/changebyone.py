@@ -22,7 +22,7 @@ def run(offset=None, value=None):
         proc = subprocess.Popen([CHALL_OUT_FILE], stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr)
     except Exception as e:
         os.remove(CHALL_OUT_FILE)
-        print("Error when try to execute : %s" % e)
+        print("Error when trying to execute : %s" % e)
     else:
         os.remove(CHALL_OUT_FILE)
         proc.wait()
@@ -30,26 +30,25 @@ def run(offset=None, value=None):
 def get_int(comment="", default=0):
     answer = input(comment)
     try:
-        answer_int = int(answer,0)
+        answer_int = int(answer, 0)
     except ValueError:
         return default
     else:
         return answer_int
 
 if __name__ == "__main__":
-    print("Hi,\n\n"\
-          "Before starting to exploit my unbreackable programm, I give you an opportunity.\n"\
+    print("Hi,\n\n"
+          "Before starting to exploit my unbreakable program, I give you an opportunity.\n"
           "You can change one byte of my binary.")
 
-    answer = input("Do you get this opportunity [Y/n] : ")
+    answer = input("Do you use this opportunity [Y/n] : ")
     if "n" in answer or "N" in answer:
-        print("Ok, It's your choice.\n\n" \
+        print("Ok, It's your choice.\n\n"
               "Have fun !!!")
         run()
     else:
         offset = get_int("offset : ")
         value  = get_int("value : ")
-        print("Ok, Thank's.\n\n"\
+        print("Ok, Thank's.\n\n"
               "Enjoy your chall !!!")
         run(offset, value)
-
